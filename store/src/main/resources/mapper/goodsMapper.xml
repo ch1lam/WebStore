@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chilam.store.mapper.GoodsMapper">
+	<resultMap type="com.chilam.store.po.Goods" id="GoodsMap">
+		<id column="id" property="id"></id>
+		<result column="name" property="name"></result>
+		<result column="price" property="price"></result>
+		<result column="quantity" property="quantity"></result>
+		<result column="no" property="no"></result>
+	</resultMap>
+
+	<select id="getGoodsInfoAll" resultMap="GoodsMap">
+		SELECT
+		id,
+		name,
+		price,
+		quantity,
+		no
+		FROM goods
+	</select>
+
+	<select id="getGoodsInfoByName" parameterType="String"
+		resultMap="GoodsMap">
+		SELECT
+		id,
+		name,
+		price,
+		quantity,
+		no
+		FROM goods
+		WHERE name=#{name}
+	</select>
+
+	<select id="getGoodsInfoByNo" parameterType="String"
+		resultMap="GoodsMap">
+		SELECT
+		id,
+		name,
+		price,
+		quantity,
+		no
+		FROM goods
+		WHERE no=#{no}
+	</select>
+
+	<select id="getGoodsInfoByPrice" resultMap="GoodsMap">
+		SELECT
+		id,
+		name,
+		price,
+		quantity,
+		no
+		FROM goods
+		WHERE price=#{price}
+	</select>
+
+	<delete id="deleteGoodsByNo" parameterType="String">
+		DELETE FROM goods
+		where no=#{no}
+	</delete>
+
+	<insert id="addGoods">
+		INSERT INTO goods
+		(name
+		,price
+		,quantity
+		,no)
+		VALUES(#{name}
+		,#{price}
+		,#{quantity}
+		,#{no})
+	</insert>
+
+	<update id="updateGoods">
+		UPDATE goods
+		SET name=#{name},
+		price=#{price},
+		quantity=#{quantity},
+		no=#{no}
+		WHERE id=#{id}
+	</update>
+
+</mapper>

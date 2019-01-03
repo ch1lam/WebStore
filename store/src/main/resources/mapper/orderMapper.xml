@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chilam.store.mapper.OrderMapper">
+	<resultMap type="com.chilam.store.po.Order" id="OrderMap">
+		<id column="id" property="id"></id>
+		<result column="goods_no" property="goods_no"></result>
+		<result column="goods_name" property="goods_name"></result>
+		<result column="guest_id" property="guest_id"></result>
+	</resultMap>
+
+	<select id="getUserInfoAll" resultMap="OrderMap">
+		SELECT
+		id,
+		goods_no,
+		goods_name,
+		guest_id
+		FROM order
+	</select>
+
+</mapper>

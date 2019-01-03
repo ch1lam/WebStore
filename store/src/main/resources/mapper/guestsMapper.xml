@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chilam.store.mapper.GuestsMapper">
+	<resultMap type="com.chilam.store.po.Guests" id="GuestsMap">
+		<id column="id" property="id"></id>
+		<result column="name" property="name"></result>
+		<result column="rank" property="rank"></result>
+	</resultMap>
+
+	<select id="getGuestsInfoAll" resultMap="GuestsMap">
+		SELECT
+		id,
+		name,
+		rank
+		FROM guests
+	</select>
+
+	<select id="getGuestsInfoByRank" parameterType="int" resultMap="GuestsMap">
+		SELECT
+		id,
+		name,
+		rank
+		FROM guests
+		WHERE rank=#{rank}
+	</select>
+	
+</mapper>

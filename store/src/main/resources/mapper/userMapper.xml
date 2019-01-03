@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chilam.store.mapper.UserMapper">
+	<resultMap type="com.chilam.store.po.User" id="UserMap">
+		<id column="id" property="id"></id>
+		<result column="username" property="username"></result>
+		<result column="password" property="password"></result>
+	</resultMap>
+
+	<select id="getUserInfoByUsername" parameterType="String"
+		resultMap="UserMap">
+		SELECT
+		id,
+		username,
+		password
+		FROM user
+		WHERE username=#{username}
+	</select>
+
+	<select id="getUserInfoAll" resultMap="UserMap">
+		SELECT
+		id,
+		username,
+		password
+		FROM user
+	</select>
+
+	<insert id="insertUserInfo" parameterType="String">
+		INSERT INTO user
+		(username,
+		password)
+		VALUES
+		(#{username},
+		#{password})
+	</insert>
+
+
+</mapper>
