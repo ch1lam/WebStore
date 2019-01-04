@@ -10,7 +10,7 @@
 		<result column="guest_id" property="guest_id"></result>
 	</resultMap>
 
-	<select id="getUserInfoAll" resultMap="OrderMap">
+	<select id="getOrderInfoAll" resultMap="OrderMap">
 		SELECT
 		id,
 		goods_no,

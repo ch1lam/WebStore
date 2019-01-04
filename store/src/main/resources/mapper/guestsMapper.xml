@@ -14,10 +14,12 @@
 		id,
 		name,
 		rank
-		FROM guests
+		FROM
+		guests
 	</select>
 
-	<select id="getGuestsInfoByRank" parameterType="int" resultMap="GuestsMap">
+	<select id="getGuestsInfoByRank" parameterType="int"
+		resultMap="GuestsMap">
 		SELECT
 		id,
 		name,
@@ -25,5 +27,23 @@
 		FROM guests
 		WHERE rank=#{rank}
 	</select>
-	
+
+	<delete id="deleteGuestById" parameterType="String">
+		DELETE FROM guests
+		WHERE id=#{id}
+	</delete>
+
+	<insert id="addGuests">
+		INSERT INTO guests
+		(name,rank)
+		VALUES(#{name},#{rank})
+	</insert>
+
+	<update id="updateGoods">
+		UPDATE INTO guests
+		SET name=#{name},rank=#{rank}
+		WHERE
+		id=#{id}
+	</update>
+
 </mapper>

@@ -37,4 +37,40 @@ public class SearchGuestsController {
 
 		}
 	}
+	
+	@RequestMapping(value = "/addGuests", method = RequestMethod.GET)
+	public void addGuests(HttpServletResponse response,String name,int rank) {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		guestsInfoService.addGuests(name, rank);
+	}
+	
+	@RequestMapping(value = "/deleteGuests", method = RequestMethod.GET)
+	public void deleteGuests(HttpServletResponse response,int id) {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		guestsInfoService.deleteGuestById(id);
+	}
+	
+	@RequestMapping(value = "/updateGuests", method = RequestMethod.GET)
+	public void updateGuests(HttpServletResponse response,String name,int rank,int id) {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		guestsInfoService.updateGoods(name, rank, id);
+	}
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
