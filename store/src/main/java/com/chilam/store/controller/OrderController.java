@@ -25,4 +25,30 @@ public class OrderController {
 		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
 		return orderInfoService.getOrderInfoAll();
 	}
+
+	@ResponseBody
+	@RequestMapping(value = "/deleteOrders", method = RequestMethod.GET)
+	public void deleteOrders(HttpServletResponse response, String id) {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		orderInfoService.deleteOrderById(id);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/addOrders", method = RequestMethod.GET)
+	public void addOrders(HttpServletResponse response, String goods_name, String goods_no,
+			int guest_id) {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		orderInfoService.addOrders(goods_name, goods_no, guest_id);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/updateOrders", method = RequestMethod.GET)
+	public void updateOrders(HttpServletResponse response, String goods_name, String goods_no,
+			int guest_id, int id) {
+		response.setHeader("Access-Control-Allow-Origin", "*");
+		response.setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS, DELETE");
+		orderInfoService.updateOrders(goods_name, goods_no, guest_id, id);
+	}
 }

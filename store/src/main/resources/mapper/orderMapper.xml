@@ -19,4 +19,28 @@
 		FROM order
 	</select>
 
+	<delete id="deleteOrderById" parameterType="int">
+		DELETE FROM orders
+		WHERE id=#{id}
+	</delete>
+
+	<insert id="addOrders">
+		INSERT INTO guests
+		(goods_no,
+		goods_name,
+		guest_id)
+		VALUES(#{goods_no},
+		#{goods_name},
+		#{guest_id})
+	</insert>
+	
+	<update id="updateOrders">
+		UPDATE INTO orders
+		SET goods_no=#{goods_no},
+		goods_name=#{goods_name}，
+		guest_id=#{guest_id}
+		WHERE
+		id=#{id}
+	</update>
+
 </mapper>

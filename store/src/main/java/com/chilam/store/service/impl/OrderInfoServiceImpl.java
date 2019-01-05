@@ -19,4 +19,22 @@ public class OrderInfoServiceImpl implements OrderInfoService {
 		return orderMapper.getOrderInfoAll();
 	}
 
+	@Override
+	public void deleteOrderById(String id) {
+		orderMapper.deleteOrderById(id);
+		
+	}
+
+	@Override
+	public void addOrders(String goods_name, String goods_no, int guest_id) {
+		orderMapper.addOrders(goods_name, goods_no, guest_id);
+		
+	}
+
+	@Override
+	public void updateOrders(String goods_name, String goods_no, int guest_id, int id) {
+		orderMapper.updateOrders(goods_name, goods_no, guest_id, id);
+		
+	}
+
 }

@@ -28,7 +28,7 @@
 		WHERE rank=#{rank}
 	</select>
 
-	<delete id="deleteGuestById" parameterType="String">
+	<delete id="deleteGuestById" parameterType="int">
 		DELETE FROM guests
 		WHERE id=#{id}
 	</delete>
