@@ -46,7 +46,7 @@
         </el-form>
         <div slot="footer" class="dialog-footer">
           <el-button @click="addDialogVisible = false">取 消</el-button>
-          <el-button type="primary" @click="addGuests()">确 定</el-button>
+          <el-button type="primary" @click="addGoods">确 定</el-button>
         </div>
       </el-dialog>
     </el-main>
@@ -65,7 +65,7 @@ export default {
       editForm: {
         name: "",
         rank: "",
-        id: ""
+        id:""
       },
       addForm: {
         name: "",
@@ -95,7 +95,7 @@ export default {
     handleEdit(index, row) {
       this.editForm.name = row.name;
       this.editForm.rank = row.rank;
-      this.editForm.id = row.id;
+      this.editForm.id=row.id;
       this.editDialogVisible = true;
     },
     handleDelete(index, row) {
@@ -115,17 +115,6 @@ export default {
             name: this.editForm.name,
             rank: this.editForm.rank,
             id: this.editForm.id
-          }
-        })
-        .then(this.reload());
-    },
-    addGuests() {
-      console.log(this.addForm);
-      axios
-        .get("http://localhost:8080/addGuests", {
-          params: {
-            name: this.addForm.name,
-            rank: this.addForm.rank,
           }
         })
         .then(this.reload());
