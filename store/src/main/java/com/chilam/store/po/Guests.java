@@ -1,15 +1,15 @@
 package com.chilam.store.po;
 
 public class Guests {
-	private String id;
+	private int id;
 	private String name;
 	private int rank;
 
-	public String getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(String id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

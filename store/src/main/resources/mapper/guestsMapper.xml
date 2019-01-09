@@ -40,7 +40,7 @@
 	</insert>
 
 	<update id="updateGoods">
-		UPDATE INTO guests
+		UPDATE guests
 		SET name=#{name},rank=#{rank}
 		WHERE
 		id=#{id}

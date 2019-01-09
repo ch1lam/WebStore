@@ -25,18 +25,18 @@ public class GuestsInfoServiceImpl implements GuestsInfoService {
 	}
 
 	@Override
-	public List<Guests> deleteGuestById(int id) {
-		return guestsMapper.deleteGuestById(id);
+	public void deleteGuestById(int id) {
+		guestsMapper.deleteGuestById(id);
 	}
 
 	@Override
-	public List<Guests> addGuests(String name, int rank) {
-		return guestsMapper.addGuests(name, rank);
+	public void addGuests(String name, int rank) {
+		guestsMapper.addGuests(name, rank);
 	}
 
 	@Override
-	public List<Guests> updateGoods(String name, int rank, int id) {
-		return guestsMapper.updateGoods(name, rank, id);
+	public void updateGoods(String name, int rank, int id) {
+		guestsMapper.updateGoods(name, rank, id);
 	}
 
 }

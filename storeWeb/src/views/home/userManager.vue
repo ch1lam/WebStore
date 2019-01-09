@@ -102,7 +102,7 @@ export default {
       axios
         .get("http://localhost:8080/deleteGuests", {
           params: {
-            no: row.no
+            id: row.id
           }
         })
         .then(this.reload());
