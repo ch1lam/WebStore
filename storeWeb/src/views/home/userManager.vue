@@ -1,27 +1,47 @@
 <template>
   <div>
-    <el-container>
-      <el-main>
-        <el-table :data="tableData">
-          <el-table-column prop="date" label="日期" width="180"></el-table-column>
-          <el-table-column prop="name" label="姓名" width="180"></el-table-column>
-          <el-table-column prop="address" label="地址"></el-table-column>
-        </el-table>
-      </el-main>
-    </el-container>
+    <el-main>
+      <el-table :data="tableData" style="width: 100%">
+        <el-table-column prop="name" label="用户名" min-width="150"></el-table-column>
+        <el-table-column prop="rank" label="用户等级" min-width="150"></el-table-column>
+        <el-table-column min-width="100" align="right">
+          <template slot="header" slot-scope="scope">
+            <el-button size="mini" @click="handleAdd">Add</el-button>
+          </template>
+          <template slot-scope="scope">
+            <el-button size="mini" @click="handleEdit(scope.$index, scope.row)">Edit</el-button>
+            <el-button
+              size="mini"
+              type="danger"
+              @click="handleDelete(scope.$index, scope.row)"
+            >Delete</el-button>
+          </template>
+        </el-table-column>
+      </el-table>
+    </el-main>
   </div>
 </template>
 <script>
 export default {
   data() {
-    const item = {
-      date: "2016-05-02",
-      name: "王小虎",
-      address: "上海市普陀区金沙江路 1518 弄"
-    };
     return {
-      tableData: Array(20).fill(item)
+      tableData: []
     };
+  },
+  mounted() {
+    axios
+      .get("http://localhost:8080/searchGuest", {
+        params: {
+          data: "",
+          type: "3"
+        }
+      })
+      .then(res => {
+        this.tableData = [];
+        res.data.forEach(element => {
+          this.tableData.push(element);
+        });
+      });
   }
 };
 </script>
