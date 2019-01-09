@@ -22,7 +22,7 @@
         </el-col>
       </el-row>
       <el-table :data="tableData" style="width: 100%">
-        <el-table-column prop="no" label="商品编号aaaaaaaaaaaaaaaaaa" min-width="150"></el-table-column>
+        <el-table-column prop="no" label="商品编号" min-width="150"></el-table-column>
         <el-table-column prop="name" label="商品名称" min-width="150"></el-table-column>
         <el-table-column prop="price" label="商品价格" min-width="150"></el-table-column>
         <el-table-column prop="quantity" label="商品存货" min-width="150"></el-table-column>
