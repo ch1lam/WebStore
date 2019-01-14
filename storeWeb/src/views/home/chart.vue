@@ -1,72 +1,71 @@
 <template>
-  <v-chart :options="polar"/>
+  <div>
+    <button @click="getData">get Data</button>
+    <ve-line :data="chartData" :loading="loading" :data-empty="dataEmpty" :settings="chartSettings"></ve-line>
+  </div>
 </template>
-
-<style>
-.echarts {
-  width: 100%;
-  height: 100%;
-}
-</style>
-
 <script>
-import ECharts from "vue-echarts/components/ECharts";
-import "echarts/lib/chart/line";
-import "echarts/lib/component/polar";
+import axios from "axios";
 
+// const DATA_FROM_BACKEND = {
+//   columns: ["name", "price"],
+//   rows: [
+//     { name: "a", price: 19810 },
+//     { name: "b", price: 4398 },
+//     { name: "c", price: 52910 }
+//   ]
+// };
+// const EMPTY_DATA = {
+//   columns: [],
+//   rows: []
+// };
 export default {
-  components: {
-    "v-chart": ECharts
-  },
-  data: function() {
-    let data = [];
-
-    for (let i = 0; i <= 360; i++) {
-      let t = (i / 180) * Math.PI;
-      let r = Math.sin(2 * t) * Math.cos(2 * t);
-      data.push([r, i]);
-    }
-
-    return {
-      polar: {
-        title : {
-        text: '用户统计',
-        subtext: '纯属虚构',
-        x:'center'
-    },
-    tooltip : {
-        trigger: 'item',
-        formatter: "{a} <br/>{b} : {c} ({d}%)"
-    },
-    legend: {
-        orient: 'vertical',
-        left: 'left',
-        data: ['iphone6','iphone6s','iphone7','iphoneX','iphone7plus']
-    },
-    series : [
-        {
-            name: '金额',
-            type: 'pie',
-            radius : '55%',
-            center: ['50%', '60%'],
-            data:[
-                {value:335, name:'1000'},
-                {value:310, name:'2000'},
-                {value:234, name:'3000'},
-                {value:135, name:'4000'},
-                {value:1548, name:'5000'}
-            ],
-            itemStyle: {
-                emphasis: {
-                    shadowBlur: 10,
-                    shadowOffsetX: 0,
-                    shadowColor: 'rgba(0, 0, 0, 0.5)'
-                }
-            }
-        }
-    ]
-      }
+  data() {
+    this.chartSettings = {
+      yAxisType: ["0,0a"]
     };
+    return {
+      chartData: {
+        columns: [],
+        rows: []
+      },
+      loading: false,
+      dataEmpty: false
+    };
+  },
+  methods: {
+    getData() {
+      this.loading = true;
+      // 发起ajax请求获取数据
+      axios
+        .get("http://localhost:8080/searchGoods", {
+          params: {
+            data: "",
+            type: "3"
+          }
+        })
+        .then(res => {
+          res.data.forEach(element => {
+            console.log(element);
+            this.chartData.columns = ["name", "price"];
+            this.chartData.rows.push({
+              name: element.name,
+              price: element.price
+            });
+            this.loading = false;
+          });
+        });
+      // setTimeout(() => {
+      //   this.chartData = this.chartData.rows.length
+      //     ? EMPTY_DATA
+      //     : DATA_FROM_BACKEND;
+      //   this.dataEmpty = !this.chartData.rows.length;
+      //   this.loading = false;
+      // }, 1000);
+    }
+  },
+  created() {
+    this.getData();
   }
 };
 </script>
