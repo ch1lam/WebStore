@@ -46,15 +46,14 @@ export default {
         })
         .then(res => {
           res.data.forEach(element => {
-            console.log(element);
             this.chartData.columns = ["name", "price"];
             this.chartData.rows.push({
               name: element.name,
               price: element.price
             });
-            this.loading = false;
           });
-        });
+          this.loading = false;
+        }, 1000);
       // setTimeout(() => {
       //   this.chartData = this.chartData.rows.length
       //     ? EMPTY_DATA
